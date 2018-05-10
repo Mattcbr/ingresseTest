@@ -41,7 +41,6 @@ class detailsViewController: UIViewController {
         }
         
         genresLabel.text = genresText
-//        premiereDateLabel.text = "Premiered on:\n\(selectedShow?.premiereDay)"
         
         var premiereDateText: String
         if (selectedShow?.premiereDay != "Premiere Day Unavailable"){
@@ -51,16 +50,16 @@ class detailsViewController: UIViewController {
         }
         premiereDateLabel.text = premiereDateText
         
-        summaryLabel.numberOfLines = 0
-        summaryLabel.text = "Summary:\n\(selectedShow!.description)"
-        summaryLabel.sizeToFit()
+        let newSummary = selectedShow!.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         
-        // Do any additional setup after loading the view.
+        
+        summaryLabel.numberOfLines = 0
+        summaryLabel.text = "Summary:\n\(newSummary)"
+        summaryLabel.sizeToFit()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
