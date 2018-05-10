@@ -36,8 +36,12 @@ class detailsViewController: UIViewController {
         
         var genresText: String = "Genres:"
         
-        selectedShow?.genre.forEach{ genre in
-                genresText += "\n\(genre)"
+        if(!selectedShow!.genre.isEmpty) {
+            selectedShow?.genre.forEach{ genre in
+                    genresText += "\n\(genre)"
+            }
+        } else {
+            genresText = "Genre unavailable"
         }
         
         genresLabel.text = genresText
