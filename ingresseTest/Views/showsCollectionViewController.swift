@@ -29,7 +29,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.navigationItem.title = searchTerm
+        self.navigationItem.title = "Results"
         r.delegate = self
         r.requestInfo(searchTerm: searchTerm)
         
@@ -42,16 +42,6 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -72,13 +62,15 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         let showToDisplay: Show = showsArray![indexPath.row]
         
         if(showToDisplay.thumbnailPath != "image404"){
-        Alamofire.request((showToDisplay.thumbnailPath)).responseImage { response in
-            print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
-            
-            if let image = response.result.value {
-                cell.showPosterImageView.image = image
+            Alamofire.request((showToDisplay.thumbnailPath)).responseImage { response in
+                print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
+                
+                if let image = response.result.value {
+                    cell.showPosterImageView.image = image
+                }
             }
-        }
+        } else {
+            cell.showPosterImageView.image = UIImage(named: "defaultImageIngresse")
         }
         
         var genreText: String
@@ -101,6 +93,25 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     
     func didFailToLoadShows(withError error: Error) {
         print("Deu ruim")
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! detailsViewController
+        let cell = sender as! showCollectionViewCell
+        var selectedIndexPath = self.collectionView?.indexPath(for: cell)
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "Results"
+
+        let selectedShow: Show = showsArray![(selectedIndexPath?.row)!]
+        let showImage = cell.showPosterImageView.image
+        
+        destination.showImage = showImage!
+        destination.selectedShow = selectedShow
+        navigationItem.backBarButtonItem = backItem
     }
     
     // MARK: UICollectionViewDelegate
