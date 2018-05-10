@@ -13,6 +13,7 @@ import AlamofireImage
 private let reuseIdentifier = "showCollectionViewCell"
 
 class showsCollectionViewController: UICollectionViewController, RequestDelegate {
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
     var searchTerm = String()
     var errorMessage = String()
@@ -20,6 +21,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     var showsArray: [Show]? {
         didSet {
             self.collectionView?.reloadData()
+            loadingView.stopAnimating()
         }
     }
     
@@ -30,6 +32,9 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
+        
+        loadingView.hidesWhenStopped = true
+        loadingView.startAnimating()
         
         self.navigationItem.title = "Results"
         r.delegate = self
@@ -63,6 +68,9 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     
         let showToDisplay: Show = showsArray![indexPath.row]
         
+        cell.imageLoadingIndicator.hidesWhenStopped = true
+        cell.imageLoadingIndicator.startAnimating()
+        
         if(showToDisplay.thumbnailPath != "image404"){
             Alamofire.request((showToDisplay.thumbnailPath)).responseImage { response in
                 print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
@@ -74,6 +82,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         } else {
             cell.showPosterImageView.image = UIImage(named: "defaultImageIngresse")
         }
+        cell.imageLoadingIndicator.stopAnimating()
         
         var genreText: String
         

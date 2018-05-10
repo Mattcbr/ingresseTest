@@ -12,4 +12,5 @@ class showCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var showTitleLabel: UILabel!
     @IBOutlet weak var showGenreLabel: UILabel!
     @IBOutlet weak var showPosterImageView: UIImageView!
+    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
 }
