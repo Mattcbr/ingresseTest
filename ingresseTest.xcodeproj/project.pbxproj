@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F37FBD120A477DB00695F51 /* showsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37FBD020A477DB00695F51 /* showsCollectionViewController.swift */; };
+		2F37FBD320A4781500695F51 /* showCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37FBD220A4781500695F51 /* showCollectionViewCell.swift */; };
+		2F37FBD720A47A2900695F51 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37FBD620A47A2900695F51 /* Request.swift */; };
+		2F37FBD920A47A3500695F51 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37FBD820A47A3500695F51 /* Parser.swift */; };
+		2F37FBDB20A47C3A00695F51 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37FBDA20A47C3A00695F51 /* Show.swift */; };
 		2FB4B72720A3AA62007F4138 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB4B72620A3AA62007F4138 /* AppDelegate.swift */; };
-		2FB4B72920A3AA62007F4138 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB4B72820A3AA62007F4138 /* ViewController.swift */; };
+		2FB4B72920A3AA62007F4138 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB4B72820A3AA62007F4138 /* SearchViewController.swift */; };
 		2FB4B72C20A3AA62007F4138 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FB4B72A20A3AA62007F4138 /* Main.storyboard */; };
 		2FB4B72E20A3AA63007F4138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB4B72D20A3AA63007F4138 /* Assets.xcassets */; };
 		2FB4B73120A3AA63007F4138 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FB4B72F20A3AA63007F4138 /* LaunchScreen.storyboard */; };
@@ -35,9 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F37FBD020A477DB00695F51 /* showsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showsCollectionViewController.swift; sourceTree = "<group>"; };
+		2F37FBD220A4781500695F51 /* showCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F37FBD620A47A2900695F51 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		2F37FBD820A47A3500695F51 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		2F37FBDA20A47C3A00695F51 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		2FB4B72320A3AA61007F4138 /* ingresseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ingresseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB4B72620A3AA62007F4138 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2FB4B72820A3AA62007F4138 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2FB4B72820A3AA62007F4138 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2FB4B72B20A3AA62007F4138 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FB4B72D20A3AA63007F4138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FB4B73020A3AA63007F4138 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,6 +89,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F37FBCE20A4770600695F51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FB4B72820A3AA62007F4138 /* SearchViewController.swift */,
+				2F37FBD020A477DB00695F51 /* showsCollectionViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F37FBCF20A4771000695F51 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2F37FBD220A4781500695F51 /* showCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2F37FBD420A4787300695F51 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				2F37FBDA20A47C3A00695F51 /* Show.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		2F37FBD520A47A1600695F51 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2F37FBD620A47A2900695F51 /* Request.swift */,
+				2F37FBD820A47A3500695F51 /* Parser.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		2FB4B71A20A3AA61007F4138 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +148,11 @@
 		2FB4B72520A3AA61007F4138 /* ingresseTest */ = {
 			isa = PBXGroup;
 			children = (
+				2F37FBCF20A4771000695F51 /* Cells */,
+				2F37FBD520A47A1600695F51 /* Core */,
+				2F37FBD420A4787300695F51 /* Objects */,
+				2F37FBCE20A4770600695F51 /* Views */,
 				2FB4B72620A3AA62007F4138 /* AppDelegate.swift */,
-				2FB4B72820A3AA62007F4138 /* ViewController.swift */,
 				2FB4B72A20A3AA62007F4138 /* Main.storyboard */,
 				2FB4B72D20A3AA63007F4138 /* Assets.xcassets */,
 				2FB4B72F20A3AA63007F4138 /* LaunchScreen.storyboard */,
@@ -323,8 +370,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FB4B72920A3AA62007F4138 /* ViewController.swift in Sources */,
+				2F37FBD920A47A3500695F51 /* Parser.swift in Sources */,
+				2F37FBD120A477DB00695F51 /* showsCollectionViewController.swift in Sources */,
+				2FB4B72920A3AA62007F4138 /* SearchViewController.swift in Sources */,
 				2FB4B72720A3AA62007F4138 /* AppDelegate.swift in Sources */,
+				2F37FBDB20A47C3A00695F51 /* Show.swift in Sources */,
+				2F37FBD720A47A2900695F51 /* Request.swift in Sources */,
+				2F37FBD320A4781500695F51 /* showCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +552,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -515,7 +570,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -530,7 +588,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -546,7 +608,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -561,7 +627,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTestUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -576,7 +646,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ingresseTestUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattcbr.ingresseTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
