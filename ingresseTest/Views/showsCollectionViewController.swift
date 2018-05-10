@@ -15,6 +15,7 @@ private let reuseIdentifier = "showCollectionViewCell"
 class showsCollectionViewController: UICollectionViewController, RequestDelegate {
     
     var searchTerm = String()
+    var errorMessage = String()
     var r = Request()
     var showsArray: [Show]? {
         didSet {
@@ -29,6 +30,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
+        
         self.navigationItem.title = "Results"
         r.delegate = self
         r.requestInfo(searchTerm: searchTerm)
@@ -88,11 +90,14 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
 
     func didLoadShows(Shows: [Show]) {
         showsArray = Shows
-        print ("Array atualizado\nFUNCIONA!!")
+        if (showsArray!.count < 1) {
+            showNotFoundAlert()
+        }
     }
     
     func didFailToLoadShows(withError error: Error) {
-        print("Deu ruim")
+        errorMessage = error.localizedDescription
+        showErrorAlert()
     }
     
     // MARK: - Navigation
@@ -114,7 +119,25 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         navigationItem.backBarButtonItem = backItem
     }
     
-    // MARK: UICollectionViewDelegate
+    
+    // MARK: Alert Handling
+    @IBAction func showNotFoundAlert(){
+        let alert = UIAlertController(title: "Nothing found", message: "Your search for \(searchTerm) found nothing.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Back", comment: "Default action"), style: .default, handler: { _ in
+            _ = self.navigationController?.popViewController(animated: true)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func showErrorAlert(){
+        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Back", comment: "Default action"), style: .default, handler: { _ in
+            _ = self.navigationController?.popViewController(animated: true)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
