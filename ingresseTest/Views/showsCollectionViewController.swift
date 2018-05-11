@@ -73,7 +73,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         
         if(showToDisplay.thumbnailPath != "image404"){
             Alamofire.request((showToDisplay.thumbnailPath)).responseImage { response in
-                print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
+//                print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
                 
                 if let image = response.result.value {
                     cell.showPosterImageView.image = image
