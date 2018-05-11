@@ -36,6 +36,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         loadingView.startAnimating()
         
         self.navigationItem.title = "Results"
+        navigationController?.isNavigationBarHidden = false
         
         //Configure the delegate and make a request to the API with the desired term
         r.delegate = self

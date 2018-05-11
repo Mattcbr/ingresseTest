@@ -22,6 +22,10 @@ class SearchViewController: UIViewController {
         searchTextField.placeholder = "Type your search here"
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
