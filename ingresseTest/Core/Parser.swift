@@ -13,16 +13,12 @@ class Parser {
     func parseInfo(response: Any) -> [Show]{
         let JSONresponse = response as? [[String : Any]]
         
-        //let data = JSONresponse?["data"] as? [String : Any]
-        //let values = data?["results"] as? [[String : Any]]
-        
         var showsArray = [Show]()
         
         JSONresponse?.forEach { item in
             
-            //Colects name of each hero
+            //Colects information of each show
             let show = item["show"] as? [String: Any]
-            
             
             let name = show!["name"] as? String
             let premiereDay = show!["premiered"] as? String
@@ -35,15 +31,17 @@ class Parser {
             if (images != nil) {
                 imagePath = images!["medium"] as! String
             } else {
-                imagePath = "image404"
+                imagePath = "image404"  //In case there is no image available, set this as a flag to show the default image
             }
             
+            //Create a "show" object
             let finalShow = Show(name: name!,
                             genre: genres!,
                             desc: description ?? "No description Available",
                             premiereDay: premiereDay ?? "Premiere Day Unavailable",
                             thumbPath: imagePath)
             
+            //Save this object in an array of objects
             showsArray.append(finalShow)
         }
     return showsArray

@@ -10,21 +10,31 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    // MARK: Outlets
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
+    // MARK: Default functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         searchTextField.placeholder = "Type your search here"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //First verify if the user typed something
+        if (searchTextField.text?.isEmpty)!{
+            showEmptyAlert() //If the search is empty, show an alert
+        }
+        
         let destination = segue.destination as! showsCollectionViewController
         
         let backItem = UIBarButtonItem()
@@ -33,6 +43,15 @@ class SearchViewController: UIViewController {
         destination.searchTerm = searchTextField.text ?? ""
         navigationItem.backBarButtonItem = backItem
     }
-
+    
+    // MARK: Alert Handling
+    
+    @IBAction func showEmptyAlert(){
+        let alert = UIAlertController(title: "Empty Search", message: "Please type a term to search for", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Default action"), style: .default, handler: { _ in
+            print("Ok pressed")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-

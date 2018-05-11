@@ -13,6 +13,7 @@ import AlamofireImage
 private let reuseIdentifier = "showCollectionViewCell"
 
 class showsCollectionViewController: UICollectionViewController, RequestDelegate {
+    // MARK: Outlets and Vars
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
     var searchTerm = String()
@@ -20,34 +21,30 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     var r = Request()
     var showsArray: [Show]? {
         didSet {
+            //When the array with shows has been set reloads the collection view and stops the loading view
             self.collectionView?.reloadData()
             loadingView.stopAnimating()
         }
     }
     
+    // MARK: Default functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         
+        //Configure and start the loading view
         loadingView.hidesWhenStopped = true
         loadingView.startAnimating()
         
         self.navigationItem.title = "Results"
+        
+        //Configure the delegate and make a request to the API with the desired term
         r.delegate = self
         r.requestInfo(searchTerm: searchTerm)
         
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: UICollectionViewDataSource
@@ -66,44 +63,54 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
             fatalError("Not a show collection view cell")
         }
     
+        //Get the show selected by the user
         let showToDisplay: Show = showsArray![indexPath.row]
         
+        //Configuring and starting a loading indicator to the imageview in the cell
         cell.imageLoadingIndicator.hidesWhenStopped = true
         cell.imageLoadingIndicator.startAnimating()
         
+        //If the flag for "no image" has not been set, request the show image
         if(showToDisplay.thumbnailPath != "image404"){
             Alamofire.request((showToDisplay.thumbnailPath)).responseImage { response in
-//                print("\nImage Request for \(showToDisplay.name) Response:\n\(response)")
-                
                 if let image = response.result.value {
-                    cell.showPosterImageView.image = image
+                    cell.showPosterImageView.image = image //Set the show image
+                    cell.imageLoadingIndicator.stopAnimating() //Stop the loading indicator once the image has been loaded.
                 }
             }
-        } else {
+        } else {    //If there's no image for that show, show a default image
             cell.showPosterImageView.image = UIImage(named: "defaultImageIngresse")
+            cell.imageLoadingIndicator.stopAnimating() //Stop the loading indicator once the image has been loaded.
         }
-        cell.imageLoadingIndicator.stopAnimating()
         
+        //Variable that will be used to display the genre
         var genreText: String
         
+        //If there is a genres array available, show the first one
         if (!showToDisplay.genre.isEmpty){
             genreText = showToDisplay.genre[0]
-        } else {
+        } else { //If not, show a message of unavailability
             genreText = "Genre Unavailable"
         }
         
+        //Configure the title and genre labels
         cell.showTitleLabel.text = showToDisplay.name
         cell.showGenreLabel.text = genreText
         return cell
     }
 
+    // MARK: Delegate functions
+    
+    //Handles the success of the request and parser
     func didLoadShows(Shows: [Show]) {
         showsArray = Shows
+        //In case nothing was found, call a function to show a "nothing found" alert
         if (showsArray!.count < 1) {
             showNotFoundAlert()
         }
     }
     
+    //Error handler. In case there is an error in the request, save the error message and call an error alert function
     func didFailToLoadShows(withError error: Error) {
         errorMessage = error.localizedDescription
         showErrorAlert()
@@ -111,7 +118,6 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! detailsViewController
         let cell = sender as! showCollectionViewCell
@@ -120,6 +126,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         let backItem = UIBarButtonItem()
         backItem.title = "Results"
 
+        //Getting the show that was selected and its poster
         let selectedShow: Show = showsArray![(selectedIndexPath?.row)!]
         let showImage = cell.showPosterImageView.image
         
@@ -130,6 +137,8 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
     
     
     // MARK: Alert Handling
+    
+    //In case the search did not return any shows, display an alert to the user.
     @IBAction func showNotFoundAlert(){
         let alert = UIAlertController(title: "Nothing found", message: "Your search for \(searchTerm) found nothing.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Back", comment: "Default action"), style: .default, handler: { _ in
@@ -139,6 +148,7 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         self.present(alert, animated: true, completion: nil)
     }
     
+    //In case there happened an error in the request, show an alert with the error message to the user.
     @IBAction func showErrorAlert(){
         let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Back", comment: "Default action"), style: .default, handler: { _ in
@@ -147,34 +157,5 @@ class showsCollectionViewController: UICollectionViewController, RequestDelegate
         
         self.present(alert, animated: true, completion: nil)
     }
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
