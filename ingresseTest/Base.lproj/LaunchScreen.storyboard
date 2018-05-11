@@ -18,12 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tvm-header-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zUN-fN-9Tx">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tvm-header-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zUN-fN-9Tx">
+                                <rect key="frame" x="60.5" y="303.5" width="253" height="80"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="zUN-fN-9Tx" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="JyP-W5-yn6"/>
+                            <constraint firstItem="zUN-fN-9Tx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="haC-L5-me9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
