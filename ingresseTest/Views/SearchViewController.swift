@@ -21,8 +21,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         searchTextField.placeholder = "Type your search here"
     }
-
-    override func viewDidAppear(_ animated: Bool) {
+    
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
     
