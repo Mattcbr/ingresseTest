@@ -18,6 +18,7 @@ class detailsViewController: UIViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var premiereDateLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var detailsView: UIView!
     
     var showImage = UIImage()
     var selectedShow: Show? {
@@ -68,6 +69,8 @@ class detailsViewController: UIViewController {
         summaryLabel.numberOfLines = 0
         summaryLabel.text = "Summary:\n\(newSummary)"
         summaryLabel.sizeToFit()
+        
+        detailsView.sizeToFit()
     }
 
     override func didReceiveMemoryWarning() {
