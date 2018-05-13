@@ -29,8 +29,8 @@ class Request {
             switch response.result{
                 
             case .success(let JSON):    //In case it succeds, it parses the received information and returns it to the shows collection view
-                let heroesArray = p.parseInfo(response: JSON)
-                self.delegate?.didLoadShows(Shows: heroesArray)
+                let showsArray = p.parseInfo(response: JSON)
+                self.delegate?.didLoadShows(Shows: showArray)
             case .failure(let error):   //In case of failure, return the error to the error handler in the shows collection view
                 self.delegate?.didFailToLoadShows(withError: error)
             }
